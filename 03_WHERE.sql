@@ -121,6 +121,116 @@ and와 or 연산의 우선순위
 select 1 or 0 and 0; -- and 연산자 0과 0이 먼저 실행된다. 두번째 연산은 1 or 0. 따라서 출력은 1
 select (1 or 0) and 0; -- 소괄호로 우선순위가 바뀌어, 출력은 0.
 
+select *
+from tbl_menu
+where category_code = 4
+   or menu_price = 9000
+    and menu_code > 10;
+-- 모든 column을 조회한다.
+-- 카테고리 코드가 4이면서 코드가 10인 것을 먼저 분류한다.
+-- 1) 분류된 조건의 데이터 출력 +
+-- 2) 비분류 데이터 중에서 가격이 9000원인 것을 출력
+
+-- between 연산자를 사용한 where
+select menu_name,
+       menu_price,
+       category_code
+from tbl_menu
+where menu_price >= 10000
+  and menu_price <= 25000;
+
+/*
+between 연산자
+- 경계값을 포함한, 사이의 값을 포함한다.
+between 사용법
+[column_name] between [A] and [B]
+*/
+select menu_name,
+       menu_price,
+       category_code
+from tbl_menu
+where menu_price between 10000 and 25000;
+-- 메뉴 가격이 1만원 이상 25000원 이하
+
+
+-- between의 부정표현
+-- 경계값을 포함하지 않는다.
+select menu_name,
+       menu_price,
+       category_code
+from tbl_menu
+where menu_price not between 10000 and 25000;
+-- 메뉴 가격이 1만원 이상 25000원 이하가 아닌 데이터만 출력
+
+/*
+like 연산자
+- 특정 패턴과 일치하는 행을 검색해준다.
+
+패턴
+- %(percent) : 0개 이상의 문자를 나타낸다.
+ex) '%apple%' 는 apple이라는 단어가 포함된 모든 문자열을 의미한다.
+-- fergjirgjiegjobv'apple'efekwgojvf
+
+- _(underscore) : 1개의 문자를 나타낸다.
+ex) 'a_k'는 'a'로 시작하고 'k'로 끝나는 세글자 문자열을 의미한다.
+*/
+select *
+from tbl_menu
+where menu_name like '과메기___';
+
+/*
+menu에서 '갈치'라는 단어가 들어간 메뉴를 찾자.
+*/
+select *
+from tbl_menu
+where menu_name like '%갈치%';
+
+-- like 부정표헌
+select *
+from tbl_menu
+where menu_name not like '%갈치%'
+
+/*
+in 연산자
+- 특정 열의 값이 지정된 목록 중 하나와 일치하는지 확인하는데 사용된다.
+
+in 사용법
+[column_name] in (4, 5, 6, ...)
+*/
+
+select menu_name,
+       category_code
+from tbl_menu
+where category_code in (4, 5, 6);
+-- category_code가 (4,5,6) 목록중에 있는 데이터만 조회하기
+
+
+-- in 연산자의 부정표현
+select menu_name,
+       category_code
+from tbl_menu
+where category_code not in (4, 5, 6);
+-- category_code가 (4, 5, 6) 목록중에 없는 데이터만 조회하기
+
+/*
+is null 연산자
+-- 값이 null인지 아닌지 여부 확인 및 조회
+*/
+select category_code,
+       category_name,
+       ref_category_code
+from tbl_category
+where ref_category_code is null;
+-- ref_category_code가 null 인 데이터만 출력
+
+
+-- is null 연산자의 부정표현
+select category_code,
+       category_name,
+       ref_category_code
+from tbl_category
+where ref_category_code is not null;
+-- ref_category_code가 null 인 데이터만 출력
 
 
 
