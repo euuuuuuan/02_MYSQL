@@ -188,7 +188,7 @@ where menu_name like '%갈치%';
 -- like 부정표헌
 select *
 from tbl_menu
-where menu_name not like '%갈치%'
+where menu_name not like '%갈치%';
 
 /*
 in 연산자
