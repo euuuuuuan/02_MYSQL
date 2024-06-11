@@ -33,7 +33,7 @@ select a.menu_name,
 from tbl_menu a # 별칭 a
          inner join tbl_category b # 별칭 b
                     on a.category_code = b.category_code
-order by b.category_name;
+order by b.category_name; # 가나다 순으로 정렬
 
 
 -- inner join은 교집합을 반환하기 때문에
@@ -47,7 +47,7 @@ order by b.category_name;
 
 
 -- using
--- column 명이 같을 경우 suing으로 서로 연관되어 있는 column에 대한
+-- column 명이 같을 경우 using으로 서로 연관되어 있는 column에 대한
 -- 조건을 작성하여 join할 수 있다.
 
 select a.menu_name,

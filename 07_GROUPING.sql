@@ -111,3 +111,28 @@ group by menu_price,
          category_code
 with rollup;
 
+
+-- 1. 특정 카테고리 총 메뉴 가격이 20000원 이상인 경우
+select category_code,
+       sum(menu_price)
+from tbl_menu
+group by category_code
+having sum(menu_price) >= 20000;
+
+
+-- 2. 특정 카테고리의 메뉴 수가 3개 이상인 경우
+select category_code,
+       count(menu_code)
+from tbl_menu
+group by category_code
+having count(menu_code) <= 3;
+# with rollup; # 무엇일까
+
+
+-- 3. 특정 카테고리에서 주문 가능한 메뉴의 평균 가격이 10000원 이상인 경우
+select category_code,
+       avg(menu_price)
+from tbl_menu
+where orderable_status = 'Y'
+group by category_code
+having avg(menu_price) >= 10000;
