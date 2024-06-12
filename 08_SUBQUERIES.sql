@@ -102,8 +102,7 @@ select *
 from tbl_menu a -- 해당 테이블을
 where menu_price = (select max(menu_price)
                     from tbl_menu b
-                    using  (category_code);
-#                     where b.category_code = a.category_code); -- 여기서 가져다 쓴다.
+                    where b.category_code = a.category_code); -- 여기서 가져다 쓴다.
 
 
 -- exists
