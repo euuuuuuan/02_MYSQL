@@ -102,7 +102,8 @@ select *
 from tbl_menu a -- 해당 테이블을
 where menu_price = (select max(menu_price)
                     from tbl_menu b
-                    where b.category_code = a.category_code); -- 여기서 가져다 쓴다.
+                    using  (category_code);
+#                     where b.category_code = a.category_code); -- 여기서 가져다 쓴다.
 
 
 -- exists
@@ -140,6 +141,8 @@ from tbl_menu a;
 
 
 -- 스칼라 서브쿼리의 반환 행수가 1행보다 많을 수는 없다.
+-- select 뒤에 , 후 서브쿼리가 들어가는 것은 행을 추가로 발생
+-- select -> from 뒤에 = 부등호가 들어가는 것은 서브쿼리와 값을 비교하는 것
 select menu_name,
        (select category_name
         from tbl_category)
