@@ -133,8 +133,6 @@ select quarter(now());
 -- 시간을 초단위로 구한다.
 select time_to_sec('1:1:1');
 
-
-
 -- insert(기준 문자열, 위치, 길이, 삽입할 문자열)
 -- insert : 기준 문자열의 위치부터 길이만큼 지우고 문자열을 끼워넣는다.
 select insert('내 이름은 아무개입니다.', 7, 3, '홍길동');
@@ -184,6 +182,3 @@ select substring('안녕하세요 반갑습니다.', 7, 2),
 -- 횟수가 음수일 경우, 오른쪽부터 세고 왼쪽을 버린다.
 select substring_index('hong.test@gmail.com', '.', 2);
 select substring_index('hong.test@gmail.com', '.', -2);
-
-
-
